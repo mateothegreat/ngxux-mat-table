@@ -1,0 +1,10 @@
+{
+    "name": "@ngxux/ngxux-mat-table",
+    "version": "0.0.3",
+    "peerDependencies": {
+        "@angular/common": "^7.0.0",
+        "@angular/core": "^7.0.0",
+        "@angular/cdk": "^7.1.1",
+        "@angular/material": "^7.1.1"
+    }
+}

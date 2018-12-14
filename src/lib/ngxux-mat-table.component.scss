@@ -1,0 +1,110 @@
+//@import 'theme';
+
+:host {
+    
+    .wrapper {
+        
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        
+        .top {
+            
+            flex: 0 1 50px;
+            display: flex;
+            align-items: center;
+            padding-left: 20px;
+            //padding-right: 20px;
+            
+            .header {
+                
+                flex: 0 1 150px;
+                font-size: 16px;
+                font-weight: bold;
+                
+            }
+            
+            .buttons {
+                
+                flex: 1;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                
+                .disabled {
+                    
+                    //color: $theme-table-header-button-disabled-color;
+                    
+                    &:hover {
+                        
+                        font-weight: normal;
+                        //color: $theme-table-header-button-disabled-color;
+                        
+                    }
+                    
+                }
+                
+                mat-icon {
+                    
+                    cursor: pointer;
+                    //color: $theme-table-header-button-color;
+                    margin-right: 15px;
+                    
+                    &:hover {
+                        
+                        font-weight: bold;
+                        //color: $theme-table-header-button-hover-color;
+                        
+                    }
+                    
+                }
+                
+                form {
+                    
+                    margin-right: 20px;;
+                    
+                }
+                
+            }
+            
+        }
+        
+        .table {
+            
+            flex: 1;
+            height: 100%;
+            overflow: auto;
+            
+            table {
+                
+                width: 100%;
+                background: #F7F8F9;
+                
+                tr.mat-header-row th {
+                    
+                    box-shadow: inset 0 7px 7px -7px #999;
+                    
+                    font-weight: bold;
+                    background: #F7F8F9;
+                    
+                }
+                
+                tr:hover {
+                    
+                    background: #E3F0F8;
+                    
+                }
+                
+                tr.selected {
+                    
+                    //background: $theme-table-row-selected-background;
+                    
+                }
+                
+            }
+            
+        }
+        
+    }
+    
+}
