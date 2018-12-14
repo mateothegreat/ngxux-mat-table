@@ -1,6 +1,27 @@
 {
     "name": "@ngxux/ngxux-mat-table",
     "version": "0.0.3",
+    "description": "Angular 7+ User Interface Library",
+    "author": {
+        "email": "matthew@matthewdavis.io",
+        "name": "Matthew Davis",
+        "url": "https://matthewdavis.io"
+    },
+    "license": "MIT",
+    "keywords": [
+        "ngxux",
+        "angular",
+        "material"
+    ],
+    "bugs": {
+        "email": "matthew@matthewdavis.io",
+        "url": "https://github.com/mateothegreat/ngxux-mat-table/issues"
+    },
+    "homepage": "https://ngxux.com",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/mateothegreat/ngxux-mat-table.git"
+    },
     "peerDependencies": {
         "@angular/common": "^7.0.0",
         "@angular/core": "^7.0.0",
