@@ -7,6 +7,7 @@ import { TableColumn }                                    from './table-column';
     selector: 'ngxux-mat-table',
 
     template: `
+        
         <div class="wrapper ">
 
             <div *ngIf="headerShow"
@@ -100,7 +101,7 @@ export class NgxuxMatTableComponent implements OnInit {
 
     @Input() public title: string;
     @Input() public columns: Array<TableColumn>;
-    @Input() public data: string;
+    @Input() public data: any[];
 
     @Input() public headerShow: boolean;
     @Input() public headerSticky: boolean;
