@@ -1,9 +1,24 @@
-import { Injectable } from '@angular/core';
+import { Injectable }                  from '@angular/core';
+import { MatSort, MatTableDataSource } from '@angular/material';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
-export class NgxuxMatTableService {
+export class NgxuxMatTableService<T> {
 
-  constructor() { }
+    public dataSource: MatTableDataSource<T>;
+    public sort: MatSort;
+
+    public constructor() {
+
+    }
+
+    public setData(data: Array<T>): void {
+
+        this.dataSource = new MatTableDataSource(data);
+
+        this.dataSource.sort = this.sort;
+
+    }
+
 }

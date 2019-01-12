@@ -1,8 +1,17 @@
-import { CommonModule }                                                                       from '@angular/common';
-import { NgModule }                                                                           from '@angular/core';
-import { ReactiveFormsModule }                                                                from '@angular/forms';
-import { MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatTableModule } from '@angular/material';
-import { NgxuxMatTableComponent }                                                             from './ngxux-mat-table.component';
+import { CommonModule }           from '@angular/common';
+import { NgModule }               from '@angular/core';
+import { ReactiveFormsModule }    from '@angular/forms';
+import {
+    MatButtonModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule,
+    MatTooltipModule
+}                                 from '@angular/material';
+import { NgxuxMatTableComponent } from './ngxux-mat-table.component';
 
 @NgModule({
 
@@ -17,10 +26,13 @@ import { NgxuxMatTableComponent }                                               
         CommonModule,
 
         MatButtonModule,
-        MatTableModule,
+        MatFormFieldModule,
         MatInputModule,
         MatIconModule,
-        MatFormFieldModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatTableModule,
+        MatTooltipModule,
 
         ReactiveFormsModule,
 

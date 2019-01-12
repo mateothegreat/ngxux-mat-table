@@ -1,13 +1,14 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup }                         from '@angular/forms';
-import { TableColumn }                                    from './table-column';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { FormControl, FormGroup }                                    from '@angular/forms';
+import { MatSort, MatTableDataSource, PageEvent }                    from '@angular/material';
+import { TableColumn }                                               from './table-column';
 
 @Component({
 
     selector: 'ngxux-mat-table',
 
     template: `
-        
+
         <div class="wrapper ">
 
             <div *ngIf="headerShow"
@@ -61,26 +62,38 @@ import { TableColumn }                                    from './table-column';
 
             <div class="table content-inset">
 
-                <table mat-table [dataSource]="data">
+                <table mat-table
+                       matSort
+                       (matSortChange)="onMatSortChange($event)"
+                       [dataSource]="data">
 
                     <ng-container *ngFor="let column of columns"
                                   [matColumnDef]="column.key">
 
-                        <th mat-header-cell
-                            *matHeaderCellDef>{{ column.label }}</th>
+                        <th mat-header-cell mat-sort-header *matHeaderCellDef>
 
-                        <td mat-cell
-                            *matCellDef="let row">{{ row[ column.key ] }}</td>
+                            {{ column.label }}
+
+                        </th>
+
+                        <td mat-cell *matCellDef="let row">
+
+                            {{ row[ column.key ] }}
+
+                        </td>
 
                     </ng-container>
 
                     <tr mat-header-row *matHeaderRowDef="columnKeys; sticky: headerSticky"></tr>
 
-                    <tr mat-row
-                        (click)="onRowClicked(row)"
-                        *matRowDef="let row; columns: columnKeys;"></tr>
+                    <tr mat-row (click)="onRowClicked(row)" *matRowDef="let row; columns: columnKeys;"></tr>
 
                 </table>
+
+                <mat-paginator [length]="data.length"
+                               [pageSize]="pageSize"
+                               [pageSizeOptions]="pageSizeOptions"
+                               (page)="onPageNavigationClick($event)"></mat-paginator>
 
             </div>
 
@@ -93,6 +106,8 @@ import { TableColumn }                                    from './table-column';
 })
 export class NgxuxMatTableComponent implements OnInit {
 
+    @ViewChild(MatSort) sort: MatSort;
+
     public formGroup = new FormGroup({
 
         searchText: new FormControl('')
@@ -101,7 +116,7 @@ export class NgxuxMatTableComponent implements OnInit {
 
     @Input() public title: string;
     @Input() public columns: Array<TableColumn>;
-    @Input() public data: any[];
+    @Input() public data: any[] = [];
 
     @Input() public headerShow: boolean;
     @Input() public headerSticky: boolean;
@@ -114,13 +129,25 @@ export class NgxuxMatTableComponent implements OnInit {
 
     @Input() public searchShow: boolean;
 
+    @Input() public pageSize: number;
+    @Input() public pageSizeOptions: number[] = [ 5, 10, 25, 100 ];
+
     @Output() public rowClick = new EventEmitter();
+    @Output() public pageNavigationClick = new EventEmitter();
+    @Output() public sortChange = new EventEmitter();
+    @Output() public searchClick = new EventEmitter();
 
     public columnKeys: string[];
+
+    public dataSource;
 
     public ngOnInit(): void {
 
         this.columnKeys = this.columns.map((v) => v.key);
+
+        this.dataSource = new MatTableDataSource(this.data);
+
+        this.dataSource.sort = this.sort;
 
     }
 
@@ -132,6 +159,19 @@ export class NgxuxMatTableComponent implements OnInit {
 
     public onSearchClick(): void {
 
+        this.searchClick.emit(this.formGroup.controls.searchText.value);
+
+    }
+
+    public onMatSortChange(e: any): void {
+
+        this.sortChange.emit(e);
+
+    }
+
+    public onPageNavigationClick(e: PageEvent): void {
+
+        this.pageNavigationClick.emit(e);
 
     }
 
