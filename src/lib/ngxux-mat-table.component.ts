@@ -91,7 +91,7 @@ import { TableColumn }                                               from './tab
 
                 </table>
 
-                <mat-paginator [length]="data.content?.length"
+                <mat-paginator [length]="data?.content?.length"
                                [pageSize]="pageSize"
                                [pageSizeOptions]="pageSizeOptions"
                                (page)="onPageNavigationClick($event)"></mat-paginator>
