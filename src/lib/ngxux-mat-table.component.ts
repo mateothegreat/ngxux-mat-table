@@ -117,7 +117,7 @@ export class NgxuxMatTableComponent implements OnInit {
 
     @Input() public title: string;
     @Input() public columns: Array<TableColumn>;
-    @Input() public data: Pageable;
+    @Input() public data: Pageable<any>;
 
     @Input() public headerShow: boolean;
     @Input() public headerSticky: boolean;
