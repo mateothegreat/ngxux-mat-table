@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup }                                    from '@angular/forms';
 import { MatSort, MatTableDataSource, PageEvent }                    from '@angular/material';
+import { Pageable }                                                  from '@ngxux/common';
 import { TableColumn }                                               from './table-column';
 
 @Component({
@@ -116,7 +117,7 @@ export class NgxuxMatTableComponent implements OnInit {
 
     @Input() public title: string;
     @Input() public columns: Array<TableColumn>;
-    @Input() public data: any[] = [];
+    @Input() public data: Pageable;
 
     @Input() public headerShow: boolean;
     @Input() public headerSticky: boolean;
@@ -145,9 +146,10 @@ export class NgxuxMatTableComponent implements OnInit {
 
         this.columnKeys = this.columns.map((v) => v.key);
 
-        this.dataSource = new MatTableDataSource(this.data);
+        this.dataSource = new MatTableDataSource(this.data.content);
 
         this.dataSource.sort = this.sort;
+        this.dataSource.sort.length = this.data.totalElements;
 
     }
 
